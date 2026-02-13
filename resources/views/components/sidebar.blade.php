@@ -31,6 +31,7 @@ li{
 }
 .up-li{
    padding: 5px;
+   color: black;
 }
 .up-li:hover{
    background-color: #6F42C1;
@@ -68,7 +69,7 @@ li{
       <img src="https://assignmate.free.nf/images/icons/assignments.png" width="25px" alt="Assignments Icon">
       Assignments 
       <ul class="assignment-dropdown list-unstyled position-absolute">
-         <li class="up-li">Upload Assignment</li>
+         <a class="up-li" style="text-decoration: none;" href="/teacher/upload">Upload Assignments</a>
          <li class="up-li">View Assignments</li>
          <li class="up-li">Edit Assignment</li>
       </ul>
@@ -79,16 +80,21 @@ li{
    </li>
    <li class="d-flex align-items-center item  gap-2 rounded-3 p-3">
       <img src="https://assignmate.free.nf/images/icons/attendance.png" width="25px" alt="Attendance Icon">
-      Attendance
+      <a style="text-decoration: none; color: black;" href="/teacher/attendance">Attendance</a>
    </li>
    <li class="d-flex align-items-center item  gap-2 rounded-3 p-3">
       <img src="https://assignmate.free.nf/images/icons/settings.png" width="25px" alt="Settings Icon">
       Settings
    </li>
-   <li class="d-flex align-items-center item  gap-2 rounded-3 p-3">
-      <img src="https://cdn-icons-png.flaticon.com/512/12635/12635060.png" width="25px" alt="Logout Icon">
-      Logout
-   </li>
+   <form action="/logout" method="POST">
+       @csrf
+       <button style="border: none; background: transparent;">
+         <li class="d-flex align-items-center item  gap-2 rounded-3 p-3">
+             <img src="https://cdn-icons-png.flaticon.com/512/12635/12635060.png" width="25px" alt="Logout Icon">
+             Logout
+         </li>
+       </button>
+   </form>
 </ul>
 <script>
    const assignItem = document.querySelector('.course-menu');

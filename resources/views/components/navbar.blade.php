@@ -25,3 +25,25 @@
   </div>
 
 </div>
+
+{{-- <div style="display: flex; justify-content: end; align-items: center; gap: 10px; margin-top: 50px; padding: 15px 25px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); border-radius: 8px; background-color: #fff;">
+  <h4 style="margin: 0;">Batches</h4>
+  <select name="batch" style="border: 2px solid #6F42C1; padding: 7px; border-radius: 5px;" id="batch">
+    <option value="" disabled selected>Select Batch</option>
+  </select>
+</div> --}}
+
+<script>
+  $.ajax({
+    url: '/teacher/get-my-batches',
+    type: 'GET',
+    data: {},
+    success: function(response){
+      let options = '';
+      options += response.map((item, index)=>{
+        return `<option value=${item.id}>${item.name}</option>`
+      })
+      $('#batch').html(options)
+    }
+  })
+</script>

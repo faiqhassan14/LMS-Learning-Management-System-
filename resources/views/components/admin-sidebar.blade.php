@@ -31,6 +31,12 @@ li{
 }
 .up-li{
    padding: 5px;
+   text-decoration: none !important;
+   color: inherit;
+}
+.up-li a {
+   color: inherit !important;
+   text-decoration: none;
 }
 .up-li:hover{
    background-color: #6F42C1;
@@ -59,26 +65,35 @@ li{
        <img src="https://assignmate.free.nf/images/icons/courses.png" width="25px" alt="Courses Icon">
        Course
        <ul class="course-dropdown list-unstyled position-absolute">
+         <li class="up-li">
+              <a href="/admin/add-courses">Add Course</a>
+         </li>
          <li class="up-li">View Courses</li>
-         <li class="up-li">Edit Course</li>
        </ul>
    </li>
    <li class="d-flex align-items-center assignment-menu item  gap-2 rounded-3 p-3">
       <img src="https://png.pngtree.com/png-vector/20250606/ourmid/pngtree-3d-user-icon-on-blue-circle-isolated-transparent-background-white-png-image_16477931.png" width="25px" alt="Assignments Icon">
         User
       <ul class="assignment-dropdown list-unstyled position-absolute">
-         <li class="up-li">Add User</li>
+         <a href="/admin/add-user"><li class="up-li">Add User</li></a>
          <li class="up-li">View User</li>
       </ul>
    </li>
-   <li class="d-flex align-items-center assignment-menu item  gap-2 rounded-3 p-3">
+   <a href="/admin/add-batches">
+      <li class="d-flex align-items-center assignment-menu item  gap-2 rounded-3 p-3" style="text-decoration: none;">
       <img src="https://assignmate.free.nf/images/icons/assignments.png" width="25px" alt="Assignments Icon">
         Batches
-   </li>
-   <li class="d-flex align-items-center item  gap-2 rounded-3 p-3">
-      <img src="https://cdn-icons-png.flaticon.com/512/12635/12635060.png" width="25px" alt="Logout Icon">
-      Logout
-   </li>
+      </li>
+   </a>
+   <form action="/logout" method="POST">
+       @csrf
+       <button style="border: none; background: transparent;">
+         <li class="d-flex align-items-center item  gap-2 rounded-3 p-3">
+             <img src="https://cdn-icons-png.flaticon.com/512/12635/12635060.png" width="25px" alt="Logout Icon">
+             Logout
+         </li>
+       </button>
+   </form>
 </ul>
 <script>
    const assignItem = document.querySelector('.course-menu');

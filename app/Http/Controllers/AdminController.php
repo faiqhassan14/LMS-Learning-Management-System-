@@ -17,6 +17,7 @@ class AdminController extends Controller
             "number" => ['required', 'numeric', 'digits:11'],
             "course" => ['required'],
             "image" => ['required', 'mimes:jpg,png,jpeg', 'max:5048'],
+            "batch_assigned" => 'required',
 
         ]);
 

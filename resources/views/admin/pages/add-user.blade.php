@@ -97,10 +97,24 @@
                 <!-- Course -->
                 <div id="course" class="mb-3">
                     <label>Select Course</label>
-                    <select class="form-select" name="course" value="{{old('course')}}">
+                    <select id="course_assigned" class="form-select" name="course" value="{{old('course')}}">
                         <option selected disabled>Choose course</option>
-                        <option>Web Development</option>
-                        <option>App Development</option>
+                        @foreach ($courses as $item)
+                            <option value="{{ $item->id }}">
+                                {{ $item->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error ('course')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div id="course" class="mb-3">
+                    <label>Select Batch</label>
+                    <select class="form-select" name="batch_assigned" id="batch_assigned" value="{{old('course')}}">
+                        <option selected disabled>Choose Batch</option>
+                        
                     </select>
                     @error ('course')
                       <p class="text-danger">{{ $message }}</p>
@@ -157,5 +171,27 @@
             }
         })
        </script> --}}
+
+
+       <script>
+$('#course_assigned').on('change', function(){
+    let course_id = $(this).val();
+    $.ajax({
+        url: '/admin/get-relevant-batches',
+        method: 'GET',
+        data: { course_id },
+        success: function(response) {
+            let options = response.map((item) => {
+                return `<option value="${item.id}">Batch No ${item.name}</option>`;
+            }).join('');
+            $('#batch_assigned').html(options);
+        },
+        error: function(err) {
+            console.log('Error fetching batches:', err);
+        }
+    });
+});
+</script>
+
 
 </x-admin-layout>
